@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "*.for_release": "cmake",
+        "*.mdx": "markdown",
+        "*.qss": "css",
+        "iostream": "cpp"
+    }
+}

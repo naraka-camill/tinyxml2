@@ -1,29 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Root version="1.0">
-    <Aaaa name="a" />
-    <Aaaa name="1.5" />
-    <Aaaa />
-    <Aaaa />
-    <asd>
-        <asddw>
-            <asddfcx>
-                <asdad />
-                <asdasd>
-                    <asdadsas>
-                        <asd>
+<progList>
+    <prog name="自动运转程序" num="1" pageIdx="0" posX="25" posY="10"/>
+    <prog name="自定义程序" num="2" pageIdx="0" posIdx="1"/>
+</progList>
 
-                            <axis xyz="asd,asd asd, asd, asd a 0.0 0.0" />
-
-
-                            <asdas>
-                                <asdasd />
-
-                            </asdas>
-
-                        </asd>
-                    </asdadsas>
-                </asdasd>
-            </asddfcx>
-        </asddw>
-    </asd>
-</Root>
+<cfg>
+    <userStack>
+        <id v="0">
+            <arg v0="0" v1="0" v2="0" v3="0" v4="0" v5="0" v6="0" v7="0"/>
+        </id>
+    </userStack>
+</cfg>

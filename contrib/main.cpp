@@ -18,13 +18,15 @@ int main(int argc, char* argv[])
     //从磁盘加载XML文件。成功返回XML_SUCCESS（0），或者返回errorID。
     doc.LoadFile(xmlPath);
 
-    XMLElement* root = doc.FirstChildElement("cfg");
-    XMLElement* ele = root;
+    XMLElement* root = doc.RootElement();
+    XMLElement* ele = nullptr;
+    float value = 0;
 
-    LOG_INFO("next sibling element name: %s", ele->Name());
-    ele = ele->FirstChildElement();
-    LOG_INFO("cfg element name: %s", ele->Name());
-
+    ele = root->FirstChildElement();
+    if (ele->QueryFloatAttribute("a", &value))
+        LOG_ERROR("Failed to get attribute a");
+    LOG_INFO("a = %f", value);
+    
     doc.SaveFile(xmlPath);
     return 0;
 }

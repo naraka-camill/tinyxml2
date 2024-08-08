@@ -1,30 +1,35 @@
 #include <iostream>
 #include "util/tinyxml2.h"
  
-//tinyxml2的类在tinyxml2命名空间
 using namespace tinyxml2;
 
-#define LOG_INFO(format, ...) printf("[INFO ] " format "\n", ##__VA_ARGS__)
-#define LOG_ERROR(format, ...) printf("[ERROR] " format "\n", ##__VA_ARGS__)
+const char* outputFile = "/workspaces/tinyxml2/xml/output.xml";
 
-//xml文件路径
-const char* xmlPath = "/workspaces/tinyxml2/xml/test.xml";
-
-int main(int argc, char* argv[])
+void test_1()
 {
-    //构造一个xml文档类
+    const char* xmlFile = "/workspaces/tinyxml2/xml/test_1.xml";
     XMLDocument doc;
-    //读取文件
-    //从磁盘加载XML文件。成功返回XML_SUCCESS（0），或者返回errorID。
-    doc.LoadFile(xmlPath);
+    doc.LoadFile(xmlFile);
 
-    XMLElement* root = doc.FirstChildElement("cfg");
-    XMLElement* ele = root;
+// ***********************************************************************************
+    XMLElement* cmdEle = doc.FirstChildElement("root")->FirstChildElement("convOpenMold");
 
-    LOG_INFO("next sibling element name: %s", ele->Name());
-    ele = ele->FirstChildElement();
-    LOG_INFO("cfg element name: %s", ele->Name());
 
-    doc.SaveFile(xmlPath);
+    XMLElement* cmdParentELe = cmdEle->Parent()->ToElement();
+    XMLElement* callELe = cmdEle->FirstChildElement("call");
+    callELe = callELe->DeepClone(&doc)->ToElement();
+    cmdParentELe->InsertAfterChild(cmdEle->PreviousSibling(), callELe);
+    cmdParentELe->DeleteChild(cmdEle);
+
+
+    printf("%s\n", callELe->NextSiblingElement()->Name());
+
+
+// ***********************************************************************************
+    doc.SaveFile(outputFile);
+}
+
+int main() {
+    test_1();
     return 0;
 }
